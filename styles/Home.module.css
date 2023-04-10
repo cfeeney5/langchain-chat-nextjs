@@ -3,7 +3,8 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem;
+  padding: 1rem;
+  margin-bottom: 10rem;
 }
 
 .header {
@@ -36,7 +37,7 @@
 
 .navlogo,
 .navlinks a {
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .navlogo {
@@ -68,17 +69,19 @@
 }
 
 .cloudform {
-  position: relative;
+  position: fixed;
+  bottom: 10px;
 }
 
 .textarea {
   position: relative;
   resize: none;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
+  font-weight: 500;
   padding: 1rem 2rem 1rem 2rem;
-  width: 75vw;
-  border-radius: 0.5rem;
-  border: 1px solid #30373d;
+  width: 60vw;
+  border-radius: 1rem;
+  border: 3px solid #ffffff;
   background: #070809;
   color: #ececf1;
   outline: none;
@@ -96,7 +99,7 @@
   position: absolute;
   top: 0.87rem;
   right: 1rem;
-  color: rgb(165, 162, 162);
+  color: rgb(255, 255, 255);
   background: none;
   padding: 0.3rem;
   border: none;
@@ -111,8 +114,8 @@
 
 .svgicon {
   transform: rotate(90deg);
-  width: 1.2em;
-  height: 1.2em;
+  width: 2rem;
+  height: 2em;
   fill: currentColor;
 }
 
@@ -128,7 +131,7 @@
 }
 
 .messagelist {
-  width: 100%;
+  width: 65%;
   height: 100%;
   overflow-y: scroll;
   border-radius: 0.5rem;
@@ -235,8 +238,8 @@
 }
 
 .cloud {
-  width: 75vw;
-  height: 65vh;
+  width: 100%;
+  height: 100%;
   background: #070809;
   border-radius: 0.5rem;
   border: 1px solid #30373d;
@@ -274,16 +277,22 @@
 /* Mobile optimization */
 @media (max-width: 600px) {
   .main {
-    padding: 1rem;
-    max-height: 90vh;
+    padding: 0rem;
+    max-height: 100vh;
   }
 
   .cloud {
     /* width: 22rem; */
-    height: 28rem;
+    height: 100vh;
+  }
+
+  .messagelist {
+    width: 100%;
   }
   .textarea {
     width: 22rem;
+    font-size: 1rem;
+    font-weight: 400;
   }
   .topnav {
     border: 1px solid black;
