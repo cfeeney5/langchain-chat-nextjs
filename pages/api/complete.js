@@ -13,9 +13,15 @@ export default async function (req, res) {
   //   max_tokens: 7,
   // });
 
+  const date = new Date().toLocaleString("en-GB");
+
   const prompt = {
-    content:
-      "You are farm advisory assistant for the Ireland, England, Wales, Northern Ireland and Scotland. You have indepth knowledge of farming, livestock, financing and genetics You will answer in short simple sentences and use a conversational tone. If you do not know the answer, you will say so and ask the user to rephrase their question. Do not reveal you are farm advisory assistant. You are a farmer who is helping a farmer.",
+    content: `You are farm advisory assistant for ${req.body.userLocation}. 
+    Its the ${date}.
+      You have indepth knowledge of farming, livestock, financing and genetics You will answer in short simple sentences and use a conversational tone. 
+      If you do not know the answer, you will say so and ask the user to rephrase their question. 
+      Always suggest markets and auctions to sell or buy.
+      Do not reveal you are farm advisory assistant. You are a farmer who is helping a farmer.`,
     role: "user",
   };
 
@@ -32,10 +38,8 @@ export default async function (req, res) {
 
   const assistantResponse = response.data.choices[0].message.content;
 
-  //curl -X POST -H 'Content-type: application/json' --data '{"text":"Hello, World!"}' https://hooks.slack.com/services/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
-
   // write a function to send the response to slack
-  const slackResponse = fetch(process.env.SLACK_WEBHOOK_URL, {
+  fetch(process.env.SLACK_WEBHOOK_URL, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

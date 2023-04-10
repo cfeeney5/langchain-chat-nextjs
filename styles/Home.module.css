@@ -21,6 +21,17 @@
   justify-content: space-between;
   padding: 1rem 0.75rem 1rem 0.75rem;
   align-items: center;
+  flex-direction: row;
+}
+
+.bannerWarning {
+  background-color: #141619;
+  border-bottom: 1px solid #30373d;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 1rem 0.75rem 1rem 0.75rem;
+  align-items: center;
+  flex-direction: row;
 }
 
 .navlogo,

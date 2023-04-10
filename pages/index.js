@@ -4,11 +4,28 @@ import styles from "../styles/Home.module.css";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import CircularProgress from "@mui/material/CircularProgress";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   const [userInput, setUserInput] = useState("");
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [userLocation, setUserLocation] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(router.query);
+    const myParam = params.get("location");
+    if (myParam) {
+      console.log(myParam);
+      setUserLocation(myParam);
+      // Do something with the value of myParam
+    } else {
+      console.log("No Location");
+      setUserLocation("Ireland, England, Wales, Northern Ireland and Scotland");
+    }
+  }, [router.query]);
+
   const [messages, setMessages] = useState([
     {
       content: "Hi there! How can I help?",
@@ -63,7 +80,11 @@ export default function Home() {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ messages: messages, userInput: userInput }),
+      body: JSON.stringify({
+        messages: messages,
+        userInput: userInput,
+        userLocation: userLocation,
+      }),
     });
 
     if (!response.ok) {
@@ -79,8 +100,6 @@ export default function Home() {
       handleError();
       return;
     }
-
-    console.log("resp", data.result.choices[0].message.content);
 
     setMessages((prevMessages) => [
       ...prevMessages,
@@ -131,6 +150,10 @@ export default function Home() {
             />
           </a>
         </div>
+      </div>
+      <div className={styles.bannerWarning}>
+        This is an Experimental MartEye Assistant and may produce inaccurate
+        information about people, places, or facts.
       </div>
       <main className={styles.main}>
         <div className={styles.cloud}>
@@ -195,7 +218,9 @@ export default function Home() {
                 id="userInput"
                 name="userInput"
                 placeholder={
-                  loading ? "Waiting for response..." : "Type your question..."
+                  loading
+                    ? "Waiting for response..."
+                    : "Type your farming question..."
                 }
                 value={userInput}
                 onChange={(e) => setUserInput(e.target.value)}
