@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem;
-  margin-bottom: 10rem;
+  /* margin-bottom: 10rem; */
 }
 
 .header {
@@ -76,8 +76,8 @@
 .textarea {
   position: relative;
   resize: none;
-  font-size: 1.5rem;
-  font-weight: 500;
+  font-size: 1.4rem;
+  font-weight: 400;
   padding: 1rem 2rem 1rem 2rem;
   width: 60vw;
   border-radius: 1rem;
@@ -135,6 +135,7 @@
   height: 100%;
   overflow-y: scroll;
   border-radius: 0.5rem;
+  margin-bottom: 5rem;
 }
 
 .messagelistloading {
@@ -290,7 +291,7 @@
     width: 100%;
   }
   .textarea {
-    width: 22rem;
+    width: 21rem;
     font-size: 1rem;
     font-weight: 400;
   }
