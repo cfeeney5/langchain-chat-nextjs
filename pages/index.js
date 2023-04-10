@@ -80,6 +80,8 @@ export default function Home() {
       return;
     }
 
+    console.log("resp", data.result.choices[0].message.content);
+
     setMessages((prevMessages) => [
       ...prevMessages,
       { content: data.result.choices[0].message.content, role: "assistant" },
