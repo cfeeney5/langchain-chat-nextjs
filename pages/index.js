@@ -5,6 +5,7 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
+// import { PersonIcon } from "../icons/icons";
 
 export default function Home() {
   const router = useRouter();
@@ -39,7 +40,8 @@ export default function Home() {
   // Auto scroll chat to bottom
   useEffect(() => {
     const messageList = messageListRef.current;
-    messageList.scrollTop = messageList.scrollHeight;
+    messageList.scrollIntoView({ behavior: "smooth" });
+    //messageList.scrollTop = 1000000;
   }, [messages]);
 
   // Focus on text field on load
@@ -75,7 +77,7 @@ export default function Home() {
     ]);
 
     // Send user question and history to API
-    const response = await fetch("/api/complete", {
+    const response = await fetch("/api/assistant", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -105,6 +107,7 @@ export default function Home() {
       ...prevMessages,
       { content: data.result.choices[0].message.content, role: "assistant" },
     ]);
+
     setLoading(false);
   };
 
@@ -184,6 +187,7 @@ export default function Home() {
                       priority={true}
                     />
                   ) : (
+                    // <PersonIcon width={30}></PersonIcon>
                     <Image
                       src="/bidavatar.png"
                       alt="Me"

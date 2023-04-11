@@ -33,6 +33,7 @@
   padding: 1rem 0.75rem 1rem 0.75rem;
   align-items: center;
   flex-direction: row;
+  text-align: center;
 }
 
 .navlogo,
@@ -133,7 +134,7 @@
 .messagelist {
   width: 65%;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: none;
   border-radius: 0.5rem;
   margin-bottom: 6rem;
 }
@@ -243,7 +244,7 @@
   height: 100%;
   background: #070809;
   border-radius: 0.5rem;
-  border: 1px solid #30373d;
+  border: 0px solid #30373d;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -288,6 +289,7 @@
   }
 
   .messagelist {
+    margin-top: 5rem;
     width: 100%;
   }
   .textarea {
