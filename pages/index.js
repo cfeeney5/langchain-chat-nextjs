@@ -39,9 +39,19 @@ export default function Home() {
 
   // Auto scroll chat to bottom
   useEffect(() => {
-    const messageList = messageListRef.current;
-    messageList.scrollIntoView({ behavior: "smooth" });
-    //messageList.scrollTop = 1000000;
+    // const messageList = messageListRef.current;
+    // messageList.scrollIntoView({ behavior: "smooth" });
+    // //messageList.scrollTop = 1000000;
+
+    const parent = document.querySelector(".parent");
+    if (parent) {
+      console.log("scrolling parent");
+      parent.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+    }
   }, [messages]);
 
   // Focus on text field on load
@@ -135,7 +145,7 @@ export default function Home() {
   }, [messages]);
 
   return (
-    <>
+    <div className="parent">
       <Head>
         <title>MartEye Chat</title>
         <meta name="description" content="MartEye Assistant" />
@@ -208,6 +218,7 @@ export default function Home() {
             })}
           </div>
         </div>
+
         <div className={styles.cloudform}>
           <form onSubmit={handleSubmit}>
             <textarea
@@ -261,6 +272,6 @@ export default function Home() {
           </div>
         </div> */}
       </main>
-    </>
+    </div>
   );
 }
