@@ -29,7 +29,8 @@ export default function Home() {
 
   const [messages, setMessages] = useState([
     {
-      content: "Hi there! How can I help?",
+      content: `Hello I'm Martha, your chatbot assistant for farmers in the UK and Ireland!. 
+      ... Don't forget, this is a test run and a bit of fun as I do get some stuff wrong.`,
       role: "assistant",
     },
   ]);
@@ -147,12 +148,12 @@ export default function Home() {
   return (
     <div className="parent">
       <Head>
-        <title>MartEye Chat</title>
-        <meta name="description" content="MartEye Assistant" />
+        <title>Martha Chat</title>
+        <meta name="description" content="Martha" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <div className={styles.topnav}>
+      {/* <div className={styles.topnav}>
         <div className={styles.navlogo}>
           <a href="https://www.marteye.ie">
             <Image
@@ -163,10 +164,10 @@ export default function Home() {
             />
           </a>
         </div>
-      </div>
+      </div> */}
       <div className={styles.bannerWarning}>
-        This is an Experimental MartEye Assistant and may produce inaccurate
-        information about people, places, or facts.
+        This is an Experimental Assistant and may produce inaccurate information
+        about people, places, or facts.
       </div>
       <main className={styles.main}>
         <div className={styles.cloud}>
@@ -189,7 +190,7 @@ export default function Home() {
                   {/* Display the correct icon depending on the message type */}
                   {message.role === "assistant" ? (
                     <Image
-                      src="/icon.png"
+                      src="/martha.png"
                       alt="AI"
                       width="30"
                       height="30"
@@ -216,10 +217,41 @@ export default function Home() {
                 </div>
               );
             })}
+
+            {messages.length == 1 ? (
+              <div className={styles.suggestedQuestion}>
+                <button
+                  className={styles.suggestedQuestionButton}
+                  onClick={() => {
+                    setUserInput("Ive a sick calf. What should I do?");
+                  }}
+                >
+                  Ive a sick calf. What should I do?
+                </button>
+                <button
+                  className={styles.suggestedQuestionButton}
+                  onClick={() => {
+                    setUserInput("Whats Red Tractor Assurance?");
+                  }}
+                >
+                  Whats the red tractor scheme?
+                </button>
+                <button
+                  className={styles.suggestedQuestionButton}
+                  onClick={() => {
+                    setUserInput("When is the TAMS 3 closing date?");
+                  }}
+                >
+                  When is the TAMS 3 closing date?
+                </button>
+              </div>
+            ) : null}
           </div>
         </div>
 
         <div className={styles.cloudform}>
+          {/* //some suggested questions are displayed above input field and when selected added to input field and sent */}
+
           <form onSubmit={handleSubmit}>
             <textarea
               disabled={loading}

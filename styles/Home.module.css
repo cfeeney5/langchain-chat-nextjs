@@ -27,7 +27,7 @@
 }
 
 .bannerWarning {
-  background-color: #141619;
+  background-color: #196636;
   border-bottom: 1px solid #30373d;
   display: flex;
   justify-content: space-evenly;
@@ -238,6 +238,30 @@
   position: relative;
   padding: 2rem 0;
   flex-direction: column;
+}
+
+.suggestedQuestion {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 2rem 0;
+  flex-direction: column;
+}
+
+.suggestedQuestionButton {
+  background: none;
+  border: 1px solid #ffffff;
+  border-radius: 0.75rem;
+  color: white;
+  font-weight: 500;
+  font-size: 1.1rem;
+  padding: 1rem;
+  margin: 1rem;
+  cursor: pointer;
+}
+.suggestedQuestionButton:hover {
+  background: #1f2227;
 }
 
 .cloud {
