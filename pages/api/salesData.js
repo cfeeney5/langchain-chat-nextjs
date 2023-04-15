@@ -38,11 +38,17 @@ export default async function (req, res) {
           const isLive = sale["isLive"].booleanValue;
           const saleType = sale["type"].stringValue;
 
+          // let saleSummaryText = "";
+          // if (saleType == "sale") {
+          //   saleSummaryText = `- ${title} (${category}) in ${location} from ${startAt} to ${beginEndAt}\n`;
+          // } else {
+          //   saleSummaryText = `- ${title} (TIMED) in ${location} at ${startAt}\n`;
+          // }
           let saleSummaryText = "";
-          if (saleType == "sale") {
-            saleSummaryText = `- ${title} (${category}) in ${location} from ${startAt} to ${beginEndAt}\n`;
+          if (saleType == "auction") {
+            saleSummaryText = `| ${title} | ${category}| ${location} | ${startAt} | ${startAt} | ${saleType} |`;
           } else {
-            saleSummaryText = `- ${title} (TIMED) in ${location} at ${startAt}\n`;
+            saleSummaryText = `| ${title} | ${category}| ${location} | ${startAt} | ${beginEndAt} | Timed |`;
           }
 
           if (isToday) {
@@ -61,12 +67,16 @@ export default async function (req, res) {
         " sales today and " +
         tomorrowsSales.length +
         " sales tomorrow.\n\n";
-      summaryText += "# Today's Sales:\n";
+      summaryText += "# Today's Sales\n\n";
+      summaryText += `| sale title | category | location | starts At | ends at | sale type |\n`;
+      summaryText += `| ---------- | -------- | -------- | --------- | ------- | --------- |\n`;
       summaryText += todaysSales.join("\n");
       summaryText += "\n\n";
 
       if (tomorrowsSales.length > 0) {
-        summaryText += "# Tomorrows Sales:\n";
+        summaryText += "# Tomorrows Sales\n\n";
+        summaryText += `| sale title | category | location | starts At | ends at | sale type |\n`;
+        summaryText += `| ---------- | -------- | -------- | --------- | ------- | --------- |\n`;
         summaryText += tomorrowsSales.join("\n");
       } else {
         summaryText += "No sales tomorrow";
@@ -74,13 +84,15 @@ export default async function (req, res) {
 
       if (remainingSales.length > 0) {
         summaryText += "\n\n";
-        summaryText += "# Other Sales:\n";
+        summaryText += "# Other Sales\n\n";
         summaryText += remainingSales.join("\n");
       } else {
+        summaryText += "\n\n";
+        summaryText += "# Other Sales\n\n";
         summaryText += `There are many other sales coming up and you should check marteye for the most up to date sales.`;
       }
 
-      //console.log(summaryText);
+      console.log(summaryText);
 
       res.status(200).json({ result: summaryText });
     });
