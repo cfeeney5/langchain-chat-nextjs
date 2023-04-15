@@ -39,10 +39,14 @@ export default function Home() {
   function createFakeName() {
     return uniqueNamesGenerator({
       dictionaries: [colors, animals],
+      length: 2,
+      style: "capital",
+      separator: " ",
     });
   }
   useEffect(() => {
     fetchSaleSummaries();
+    console.log(createFakeName());
     setUserId(createFakeName());
   }, []);
 

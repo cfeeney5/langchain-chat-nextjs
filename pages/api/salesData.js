@@ -76,9 +76,11 @@ export default async function (req, res) {
         summaryText += "\n\n";
         summaryText += "# Other Sales:\n";
         summaryText += remainingSales.join("\n");
+      } else {
+        summaryText += `There are many other sales coming up and you should check marteye for the most up to date sales.`;
       }
 
-      console.log(summaryText);
+      //console.log(summaryText);
 
       res.status(200).json({ result: summaryText });
     });
