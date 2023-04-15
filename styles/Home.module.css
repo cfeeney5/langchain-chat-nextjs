@@ -77,10 +77,9 @@
 
 .textarea {
   position: relative;
-  resize: none;
   font-size: 1.4rem;
   font-weight: 400;
-  padding: 1rem 2rem 1rem 2rem;
+  padding: 1rem 3rem 1rem 2rem;
   width: 60vw;
   border-radius: 1rem;
   border: 3px solid #ffffff;
@@ -273,6 +272,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  /* margin-bottom: 1rem; */
 }
 
 .pointsnormal {
@@ -307,14 +307,7 @@
     padding: 0rem;
     max-height: 100vh;
   }
-
-  .cloud {
-    /* width: 22rem; */
-    height: 100vh;
-  }
-
   .messagelist {
-    margin-top: 5rem;
     width: 100%;
   }
   .textarea {

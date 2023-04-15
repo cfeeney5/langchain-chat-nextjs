@@ -13,6 +13,40 @@ export default function Home() {
   const [history, setHistory] = useState([]);
   const [loading, setLoading] = useState(false);
   const [userLocation, setUserLocation] = useState("");
+  const [suggestedQuestions, setSuggestedQuestions] = useState([]);
+  const [saleSummaryText, setSaleSummaryText] = useState("");
+
+  async function fetchSaleSummaries() {
+    const response1 = await fetch("/api/salesData", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const saleSummaryText = await response1.json();
+
+    // Do something with saleSummaryText here
+    setSaleSummaryText(saleSummaryText.result);
+  }
+
+  useEffect(() => {
+    fetchSaleSummaries();
+  }, []);
+
+  const questions = [
+    "Ive a sick calf. What should I do?",
+    "Whats Red Tractor Assurance?",
+    "When is the TAMS 3 closing date?",
+    "What sales are on today?",
+    "What sheep sales are on tomorrow?",
+    "How many sales are on today?",
+  ];
+
+  useEffect(() => {
+    setSuggestedQuestions(
+      questions.sort(() => 0.5 - Math.random()).slice(0, 3)
+    );
+  }, []);
 
   useEffect(() => {
     const params = new URLSearchParams(router.query);
@@ -40,18 +74,12 @@ export default function Home() {
 
   // Auto scroll chat to bottom
   useEffect(() => {
-    // const messageList = messageListRef.current;
-    // messageList.scrollIntoView({ behavior: "smooth" });
-    // //messageList.scrollTop = 1000000;
+    const messageList = messageListRef.current;
+    messageList.scrollIntoView({ behavior: "smooth" });
 
-    const parent = document.querySelector(".parent");
-    if (parent) {
-      console.log("scrolling parent");
-      parent.scrollIntoView({
-        behavior: "smooth",
-        block: "end",
-        inline: "nearest",
-      });
+    const lastMessage = messageList.lastElementChild;
+    if (lastMessage) {
+      lastMessage.scrollIntoView({ behavior: "smooth" });
     }
   }, [messages]);
 
@@ -97,6 +125,7 @@ export default function Home() {
         messages: messages,
         userInput: userInput,
         userLocation: userLocation,
+        saleSummaryText: saleSummaryText,
       }),
     });
 
@@ -220,30 +249,16 @@ export default function Home() {
 
             {messages.length == 1 ? (
               <div className={styles.suggestedQuestion}>
-                <button
-                  className={styles.suggestedQuestionButton}
-                  onClick={() => {
-                    setUserInput("Ive a sick calf. What should I do?");
-                  }}
-                >
-                  Ive a sick calf. What should I do?
-                </button>
-                <button
-                  className={styles.suggestedQuestionButton}
-                  onClick={() => {
-                    setUserInput("Whats Red Tractor Assurance?");
-                  }}
-                >
-                  Whats the red tractor scheme?
-                </button>
-                <button
-                  className={styles.suggestedQuestionButton}
-                  onClick={() => {
-                    setUserInput("When is the TAMS 3 closing date?");
-                  }}
-                >
-                  When is the TAMS 3 closing date?
-                </button>
+                {messages.length === 1 &&
+                  suggestedQuestions.map((question, index) => (
+                    <button
+                      key={index}
+                      className={styles.suggestedQuestionButton}
+                      onClick={() => setUserInput(question)}
+                    >
+                      {question}
+                    </button>
+                  ))}
               </div>
             ) : null}
           </div>
