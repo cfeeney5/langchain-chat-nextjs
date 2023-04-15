@@ -15,6 +15,7 @@ export default function Home() {
   const [userLocation, setUserLocation] = useState("");
   const [suggestedQuestions, setSuggestedQuestions] = useState([]);
   const [saleSummaryText, setSaleSummaryText] = useState("");
+  const [userId, setUserId] = useState("");
 
   async function fetchSaleSummaries() {
     const response1 = await fetch("/api/salesData", {
@@ -31,6 +32,7 @@ export default function Home() {
 
   useEffect(() => {
     fetchSaleSummaries();
+    setUserId(Math.random().toString(36).substring(2, 15));
   }, []);
 
   const questions = [
@@ -40,6 +42,7 @@ export default function Home() {
     "What sales are on today?",
     "What sheep sales are on tomorrow?",
     "How many sales are on today?",
+    "Tell me a joke",
   ];
 
   useEffect(() => {
@@ -101,10 +104,56 @@ export default function Home() {
     setUserInput("");
   };
 
+  const handleSuggestedQuestion = async (e, question) => {
+    console.log("Question1: " + question);
+    setUserInput(question);
+
+    setLoading(true);
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { content: question, role: "user" },
+    ]);
+
+    // Send user question and history to API
+    const response = await fetch("/api/assistant", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        messages: messages,
+        userId: userId,
+        userInput: question,
+        userLocation: userLocation,
+        saleSummaryText: saleSummaryText,
+      }),
+    });
+
+    if (!response.ok) {
+      handleError();
+      return;
+    }
+
+    // Reset user input
+    setUserInput("");
+    const data = await response.json();
+
+    if (data.result.error === "Unauthorized") {
+      handleError();
+      return;
+    }
+
+    setMessages((prevMessages) => [
+      ...prevMessages,
+      { content: data.result.choices[0].message.content, role: "assistant" },
+    ]);
+
+    setLoading(false);
+  };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
-
     if (userInput.trim() === "") {
       return;
     }
@@ -123,6 +172,7 @@ export default function Home() {
       },
       body: JSON.stringify({
         messages: messages,
+        userId: userId,
         userInput: userInput,
         userLocation: userLocation,
         saleSummaryText: saleSummaryText,
@@ -254,7 +304,9 @@ export default function Home() {
                     <button
                       key={index}
                       className={styles.suggestedQuestionButton}
-                      onClick={() => setUserInput(question)}
+                      onClick={(e) => {
+                        handleSuggestedQuestion(e, question);
+                      }}
                     >
                       {question}
                     </button>

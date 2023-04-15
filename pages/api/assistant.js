@@ -82,15 +82,15 @@ export default async function (req, res) {
   const assistantResponse = response.data.choices[0].message.content;
 
   //write a function to send the response to slack
-  await fetch(process.env.SLACK_WEBHOOK_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      text: `Q: ${userPrompt.content} \nA: ${assistantResponse}`,
-    }),
-  });
+  // await fetch(process.env.SLACK_WEBHOOK_URL, {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  //   body: JSON.stringify({
+  //     text: `ID:${req.body.userId}\nQ : ${userPrompt.content} \nA: ${assistantResponse}`,
+  //   }),
+  // });
 
   res.status(200).json({ result: response.data });
 }
