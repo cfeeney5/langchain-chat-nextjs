@@ -105,7 +105,7 @@ export default function Home() {
   };
 
   const handleSuggestedQuestion = async (e, question) => {
-    console.log("Question1: " + question);
+    e.preventDefault();
     setUserInput(question);
 
     setLoading(true);
