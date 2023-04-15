@@ -90,7 +90,7 @@ export default async function (req, res) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        text: `ID:${req.body.userId}\nQ : ${userPrompt.content} \nA: ${assistantResponse}`,
+        text: `ID: ${req.body.userId}\nQ: ${userPrompt.content} \nA: ${assistantResponse}`,
       }),
     });
   }
