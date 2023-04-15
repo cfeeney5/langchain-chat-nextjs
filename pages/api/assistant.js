@@ -92,8 +92,20 @@ export default async function (req, res) {
       headers: {
         "Content-Type": "application/json",
       },
+      // body: JSON.stringify({
+      //   text: `ID: ${req.body.userId} ${req.body.platform}\nQ: ${userPrompt.content} \nA: ${assistantResponse}`,
+
+      // }),
       body: JSON.stringify({
-        text: `ID: ${req.body.userId} ${req.body.platform}\nQ: ${userPrompt.content} \nA: ${assistantResponse}`,
+        blocks: [
+          {
+            type: "section",
+            text: {
+              type: "mrkdwn",
+              text: `*${req.body.userId}* \n*Q.* ${userPrompt.content} \n*A.* _${assistantResponse}_ \nPlatform: _${req.body.platform}_`,
+            },
+          },
+        ],
       }),
     });
   }

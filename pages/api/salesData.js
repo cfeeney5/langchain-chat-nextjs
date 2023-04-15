@@ -69,14 +69,14 @@ export default async function (req, res) {
         " sales tomorrow.\n\n";
       summaryText += "# Today's Sales\n\n";
       summaryText += `| sale title | category | location | starts At | ends at | sale type |\n`;
-      summaryText += `| ---------- | -------- | -------- | --------- | ------- | --------- |\n`;
+      summaryText += `| -- | --- | --- | --- | --- | ---- |\n`;
       summaryText += todaysSales.join("\n");
       summaryText += "\n\n";
 
       if (tomorrowsSales.length > 0) {
         summaryText += "# Tomorrows Sales\n\n";
         summaryText += `| sale title | category | location | starts At | ends at | sale type |\n`;
-        summaryText += `| ---------- | -------- | -------- | --------- | ------- | --------- |\n`;
+        summaryText += `| -- | --- | --- | --- | --- | ---- |\n`;
         summaryText += tomorrowsSales.join("\n");
       } else {
         summaryText += "No sales tomorrow";
