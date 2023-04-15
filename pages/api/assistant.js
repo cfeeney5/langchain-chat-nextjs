@@ -102,7 +102,7 @@ export default async function (req, res) {
             type: "section",
             text: {
               type: "mrkdwn",
-              text: `*${req.body.userId}* \n\n*${userPrompt.content}* \n_${assistantResponse}_ \nOS: _${req.body.platform}_`,
+              text: `*${req.body.userId}* \n\n*Q: ${userPrompt.content}* \n*A:* _${assistantResponse}_ \nOS: _${req.body.platform}_`,
             },
           },
         ],
