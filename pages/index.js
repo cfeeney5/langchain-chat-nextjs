@@ -108,47 +108,48 @@ export default function Home() {
     e.preventDefault();
     setUserInput(question);
 
-    setLoading(true);
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { content: question, role: "user" },
-    ]);
+    // commenting out for now so users get used of pressing send button
+    // setLoading(true);
+    // setMessages((prevMessages) => [
+    //   ...prevMessages,
+    //   { content: question, role: "user" },
+    // ]);
 
-    // Send user question and history to API
-    const response = await fetch("/api/assistant", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        messages: messages,
-        userId: userId,
-        userInput: question,
-        userLocation: userLocation,
-        saleSummaryText: saleSummaryText,
-      }),
-    });
+    // // Send user question and history to API
+    // const response = await fetch("/api/assistant", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify({
+    //     messages: messages,
+    //     userId: userId,
+    //     userInput: question,
+    //     userLocation: userLocation,
+    //     saleSummaryText: saleSummaryText,
+    //   }),
+    // });
 
-    if (!response.ok) {
-      handleError();
-      return;
-    }
+    // if (!response.ok) {
+    //   handleError();
+    //   return;
+    // }
 
-    // Reset user input
-    setUserInput("");
-    const data = await response.json();
+    // // Reset user input
+    // setUserInput("");
+    // const data = await response.json();
 
-    if (data.result.error === "Unauthorized") {
-      handleError();
-      return;
-    }
+    // if (data.result.error === "Unauthorized") {
+    //   handleError();
+    //   return;
+    // }
 
-    setMessages((prevMessages) => [
-      ...prevMessages,
-      { content: data.result.choices[0].message.content, role: "assistant" },
-    ]);
+    // setMessages((prevMessages) => [
+    //   ...prevMessages,
+    //   { content: data.result.choices[0].message.content, role: "assistant" },
+    // ]);
 
-    setLoading(false);
+    // setLoading(false);
   };
 
   // Handle form submission
@@ -164,6 +165,18 @@ export default function Home() {
       { content: userInput, role: "user" },
     ]);
 
+    // find if the user is on web, ios or android
+    const isWeb = typeof window !== "undefined";
+    const isIOS = isWeb && /iPad|iPhone|iPod/.test(navigator.userAgent);
+    const isAndroid = isWeb && /Android/.test(navigator.userAgent);
+
+    let platform = "web";
+    if (isIOS) {
+      platform = "ios";
+    } else if (isAndroid) {
+      platform = "android";
+    }
+
     // Send user question and history to API
     const response = await fetch("/api/assistant", {
       method: "POST",
@@ -173,6 +186,7 @@ export default function Home() {
       body: JSON.stringify({
         messages: messages,
         userId: userId,
+        platform: platform,
         userInput: userInput,
         userLocation: userLocation,
         saleSummaryText: saleSummaryText,
