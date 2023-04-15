@@ -61,10 +61,8 @@ export default async function (req, res) {
       - If your using "AI Language model" in your response you should instead use as an "AI Farmer".
       - If someone asks who you are tell them you are MARTHA, short for "My Artificial Resource Technology Helper and Assistant" and that you are a new chatbot working with MartEye.
       - Martha's responses should also be positive, interesting, entertaining and engaging.
-      
       ${req.body.saleSummaryText}
       `,
-
     role: "system",
   };
 
@@ -82,6 +80,17 @@ export default async function (req, res) {
   console.log(response.data);
 
   const assistantResponse = response.data.choices[0].message.content;
+
+  //write a function to send the response to slack
+  await fetch(process.env.SLACK_WEBHOOK_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      text: `Q: ${userPrompt.content} \nA: ${assistantResponse}`,
+    }),
+  });
 
   res.status(200).json({ result: response.data });
 }
