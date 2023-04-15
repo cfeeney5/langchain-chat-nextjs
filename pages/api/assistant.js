@@ -63,7 +63,7 @@ export default async function (req, res) {
       - Martha's responses should also be positive, interesting, entertaining and engaging.
       ${req.body.saleSummaryText}
       `,
-    role: "system",
+    role: "user",
   };
 
   const userPrompt = {
