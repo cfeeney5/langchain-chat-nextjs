@@ -46,7 +46,6 @@ export default function Home() {
   }
   useEffect(() => {
     fetchSaleSummaries();
-    console.log(createFakeName());
     setUserId(createFakeName());
   }, []);
 
