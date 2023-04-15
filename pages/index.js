@@ -5,6 +5,12 @@ import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 import CircularProgress from "@mui/material/CircularProgress";
 import { useRouter } from "next/router";
+const {
+  uniqueNamesGenerator,
+  adjectives,
+  colors,
+  animals,
+} = require("unique-names-generator");
 // import { PersonIcon } from "../icons/icons";
 
 export default function Home() {
@@ -30,9 +36,14 @@ export default function Home() {
     setSaleSummaryText(saleSummaryText.result);
   }
 
+  function createFakeName() {
+    return uniqueNamesGenerator({
+      dictionaries: [colors, animals],
+    });
+  }
   useEffect(() => {
     fetchSaleSummaries();
-    setUserId(Math.random().toString(36).substring(2, 15));
+    setUserId(createFakeName());
   }, []);
 
   const questions = [
