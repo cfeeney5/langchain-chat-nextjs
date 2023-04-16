@@ -9,7 +9,8 @@ const client = new WebClient(process.env.SLACK_MARTHA_CHAT_TOKEN, {
 });
 
 // ID of the channel you want to send the message to
-const channelId = "C04PVTMS24Q";
+//const channelId = "C04PVTMS24Q"; // tetsting channel
+const channelId = "CHGR0G3JM"; // production channel
 
 async function sendMessage(username, blocks) {
   try {
