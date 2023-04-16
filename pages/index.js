@@ -118,54 +118,6 @@ export default function Home() {
     setUserInput("");
   };
 
-  const handleSuggestedQuestion = async (e, question) => {
-    e.preventDefault();
-    setUserInput(question);
-
-    // commenting out for now so users get used of pressing send button
-    // setLoading(true);
-    // setMessages((prevMessages) => [
-    //   ...prevMessages,
-    //   { content: question, role: "user" },
-    // ]);
-
-    // // Send user question and history to API
-    // const response = await fetch("/api/assistant", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     messages: messages,
-    //     userId: userId,
-    //     userInput: question,
-    //     userLocation: userLocation,
-    //     saleSummaryText: saleSummaryText,
-    //   }),
-    // });
-
-    // if (!response.ok) {
-    //   handleError();
-    //   return;
-    // }
-
-    // // Reset user input
-    // setUserInput("");
-    // const data = await response.json();
-
-    // if (data.result.error === "Unauthorized") {
-    //   handleError();
-    //   return;
-    // }
-
-    // setMessages((prevMessages) => [
-    //   ...prevMessages,
-    //   { content: data.result.choices[0].message.content, role: "assistant" },
-    // ]);
-
-    // setLoading(false);
-  };
-
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -184,11 +136,11 @@ export default function Home() {
     const isIOS = isWeb && /iPad|iPhone|iPod/.test(navigator.userAgent);
     const isAndroid = isWeb && /Android/.test(navigator.userAgent);
 
-    let platform = "web";
+    let platform = "Web";
     if (isIOS) {
-      platform = "ios";
+      platform = "iOS";
     } else if (isAndroid) {
-      platform = "android";
+      platform = "Android";
     }
 
     // Send user question and history to API
@@ -332,8 +284,8 @@ export default function Home() {
                     <button
                       key={index}
                       className={styles.suggestedQuestionButton}
-                      onClick={(e) => {
-                        handleSuggestedQuestion(e, question);
+                      onClick={() => {
+                        setUserInput(question);
                       }}
                     >
                       {question}

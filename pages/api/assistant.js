@@ -1,4 +1,5 @@
 import { CreateChatCompletionResponse } from "openai";
+import sendMessage from "./slack";
 
 export default async function (req, res) {
   const { Configuration, OpenAIApi } = require("openai");
@@ -86,28 +87,26 @@ export default async function (req, res) {
 
   // check if its in local test environment
   if (process.env.NODE_ENV != "development") {
-    //write a function to send the response to slack
-    await fetch(process.env.SLACK_WEBHOOK_URL, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
+    const blocks = [
+      {
+        type: "header",
+        text: {
+          type: "plain_text",
+          text: userPrompt.content,
+          emoji: true,
+        },
       },
-      // body: JSON.stringify({
-      //   text: `ID: ${req.body.userId} ${req.body.platform}\nQ: ${userPrompt.content} \nA: ${assistantResponse}`,
 
-      // }),
-      body: JSON.stringify({
-        blocks: [
-          {
-            type: "section",
-            text: {
-              type: "mrkdwn",
-              text: `*${req.body.userId}* \n\n*Q: ${userPrompt.content}* \n*A:* _${assistantResponse}_ \nOS: _${req.body.platform}_`,
-            },
-          },
-        ],
-      }),
-    });
+      {
+        type: "section",
+        text: {
+          type: "mrkdwn",
+          text: `${assistantResponse}`,
+        },
+      },
+    ];
+
+    sendMessage(`${req.body.userId} (${req.body.platform})`, blocks);
   }
 
   res.status(200).json({ result: response.data });
