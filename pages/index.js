@@ -50,7 +50,7 @@ export default function Home() {
   }, []);
 
   const questions = [
-    "Ive a sick calf. What should I do?",
+    "Ive a calf with a scour. What will I do?",
     "Whats Red Tractor Assurance?",
     "When is the TAMS 3 closing date?",
     "What sales are on today?",
