@@ -92,7 +92,7 @@ export default async function (req, res) {
         summaryText += `There are many other sales coming up and you should check marteye for the most up to date sales.`;
       }
 
-      console.log(summaryText);
+      //console.log(summaryText);
 
       res.status(200).json({ result: summaryText });
     });

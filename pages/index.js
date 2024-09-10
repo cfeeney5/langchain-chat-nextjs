@@ -63,6 +63,9 @@ export default function Home() {
     "Where can I compare farm insurance?",
     "What types of farm insurance coverage do I need?",
     "Can you help me find a farm insurance quote?",
+    "What kind of insurance do I actually need for my farm setup?",
+    "What factors should I consider before renewing my farm insurance?",
+    "How can I make sure I'm not overpaying for my farm insurance?",
     "What sales are on today?",
     "What sheep sales are on tomorrow?",
     "How many sales are on today?",
@@ -70,8 +73,8 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    const insuranceQuestions = questions.slice(0, 3);
-    const otherQuestions = questions.slice(3);
+    const insuranceQuestions = questions.slice(0, 6);
+    const otherQuestions = questions.slice(6);
 
     const randomInsuranceQuestion =
       insuranceQuestions[Math.floor(Math.random() * insuranceQuestions.length)];

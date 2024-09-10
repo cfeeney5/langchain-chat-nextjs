@@ -35,7 +35,7 @@ export default async function (req, res) {
       Friday: Quite a bit of uncertainty for Friday but there will be more cloud about generally and there is the chance of showers at times highs will hold between 11 in the east and 15 degrees in the northwest in moderate to fresh east winds.
 
       ## Weather in UK:
-      - Becoming drier until early May
+      - Becoming wetter until early October
       - Drier conditions will develop over the next seven days, although there could be some showers around midweek and perhaps some rain returning at the weekend. The following week looks like being dominated by high pressure so there should be a lot of dry weather around but a chance of some rain or showers moving towards southern and western areas towards the end of April.
       - Market Prices: Steers are averaging 273.3 pence per kilo in Great Britain
       - Market Prices: Heifers are averaging 285.3 pence per kilo in Great Britain
@@ -76,6 +76,10 @@ export default async function (req, res) {
 
        # Insurance 
        you should find out what kind of cover they are looking and how they currently get their insurance. You should try and gather as much information as possible about their needs before suggesting talking to a broker.
+
+
+       you should has when was the last time they changed insurance and if they are a full time farmer.
+
 
       ${req.body.saleSummaryText}
       `,
