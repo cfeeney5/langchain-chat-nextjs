@@ -75,7 +75,7 @@ export default async function (req, res) {
 
 
        # Insurance 
-       you should find out what kind of cover they are looking and how they currently get their insurance.
+       you should find out what kind of cover they are looking and how they currently get their insurance. You should try and gather as much information as possible about their needs before suggesting talking to a broker.
 
       ${req.body.saleSummaryText}
       `,
