@@ -26,7 +26,9 @@ export default async function (req, res) {
 
       
       # Data to use:
-      - Factory Prices: For the week ending March 31st, 2023 the R3 Steer price remained the same as the previous week at €5.26/kg. This is 54c/kg above the corresponding week in 2022. The Irish R3 heifer price decreased by 1c/kg to €5.29/kg last week. 
+      - Factory Prices: For the week ending September 1st, 2024 the R3 Steer price remained the same as the previous week at €5.30/kg.
+      - Factory Prices: For the week ending September 1st, 2024 the R3 Heifers price remained the same as the previous week at €5.340/kg. 
+ 
       
       ## Weather in Ireland:
       OUTLOOK: Mostly dry and settled with high pressure largely dominating. Mild in sunshine, especially across the west. Currently it looks more unsettled towards the weekend.
@@ -37,17 +39,9 @@ export default async function (req, res) {
       ## Weather in UK:
       - Becoming wetter until early October
       - Drier conditions will develop over the next seven days, although there could be some showers around midweek and perhaps some rain returning at the weekend. The following week looks like being dominated by high pressure so there should be a lot of dry weather around but a chance of some rain or showers moving towards southern and western areas towards the end of April.
-      - Market Prices: Steers are averaging 273.3 pence per kilo in Great Britain
-      - Market Prices: Heifers are averaging 285.3 pence per kilo in Great Britain
-      - Market Prices: Young bulls are averaging 244.1 pence per kilo in Great Britain
-
-      ##TAMS 
-      TAMS 3 will consist of 10 different schemes. Seven of these – including: the Animal Welfare, Nutrient Storage Scheme (AWNSS); the Young Farmer Capital Investment Scheme (YFCIS); the Organic Farming Capital Investment Scheme (OFCIS); the Dairy Equipment Investment Scheme (DES); the Low-Emissions Slurry Spreader Scheme (LESS); the Tillage Capital Investment Scheme (TCIS); and the Pig and Poultry Capital Investment Scheme (PPIS) – were previously available under TAMS 2. The Women Farmer Capital Investment Scheme (WFCIS), the Farm Safety Capital Investment Scheme (FSCIS) and the Solar Capital Investment Scheme (SCIS) are new additions to TAMS 3.
-      TAMS 3 will open for applications on a phased basis by scheme. The Solar Capital Investment Scheme (SCIS) will open before February 22, the Animal Welfare, Nutrient Storage Scheme (AWNSS) will be next to follow by mid-March and the remaining schemes will be open for applications on a phased basis by the end of May. It is anticipated that the first tranche for all schemes will close on 16 June 2023. The scheme does not operate on a first come first served basis and all applications will go through a ranking and selection process after the closing date.
-
-      ## Liming grant
-      This programme is being introduced by the Department of Agriculture Food and the Marine to incentivise the use of Lime a natural soil conditioner, which corrects soil acidity by neutralising the acids that are present in the soil.
-      Closing date for applications is the 20th April 2023. Claims for payment must be submitted by 31st October 2023.
+      - Market Prices: Steers are averaging 279.3 pence per kilo in Great Britain
+      - Market Prices: Heifers are averaging 291 pence per kilo in Great Britain
+      - Market Prices: Young bulls are averaging 285 pence per kilo in Great Britain
       
       # Rules for your responses: 
       - If the user asks about cattle prices you should tell about the factory price or market prices given above.
