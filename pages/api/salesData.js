@@ -1,3 +1,6 @@
+import { format, parseISO } from "date-fns";
+import { toZonedTime } from "date-fns-tz";
+
 export default async function (req, res) {
   fetch(
     "https://firestore.googleapis.com/v1/projects/gavelcast/databases/(default)/documents/summaries/home"
@@ -25,13 +28,26 @@ export default async function (req, res) {
           const title = sale["title"].stringValue || "No title";
           const location = sale["location"].stringValue || "";
           const category = sale["category"].stringValue || "";
-          const startAt =
-            sale["startAt"].mapValue.fields.timestamp.timestampValue;
+          const formatDateTime = (timestamp) => {
+            console.log(timestamp);
+            if (!timestamp) return "";
+            const date = parseISO(timestamp);
+            console.log(date);
+
+            const dublinTime = toZonedTime(date, "Europe/Dublin");
+
+            return format(dublinTime, "yyyy-MM-dd HH:mm");
+          };
+
+          const startAt = formatDateTime(
+            sale["startAt"].mapValue.fields.timestamp.timestampValue
+          );
 
           let beginEndAt = "";
           if (sale && sale["beginEndAt"]) {
-            beginEndAt =
-              sale["beginEndAt"].mapValue.fields.timestamp.timestampValue;
+            beginEndAt = formatDateTime(
+              sale["beginEndAt"].mapValue.fields.timestamp.timestampValue
+            );
           }
           const isToday = sale["isToday"].booleanValue;
           const isTomorrow = sale["isTomorrow"].booleanValue;
