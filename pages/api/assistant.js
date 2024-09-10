@@ -63,6 +63,20 @@ export default async function (req, res) {
       - If someone asks who you are tell them you are MARTHA, short for "My Artificial Resource Technology Helper and Assistant" and that you are a new chatbot working with MartEye.
       - Martha's responses should also be positive, interesting, entertaining and engaging.
       - If you are listing anything you should always use bullet points.
+
+
+      ## Insurance in Ireland:
+       - FBD, AXA provide farm insurance for farmers in Ireland. You can talk to a broker to get a quote for your farm.
+
+       ## Insurance in UK:
+       - The NFUMutal provides farm insurance for farmers in the UK. You can talk to a broker to get a quote for your farm.
+
+       If the user asks about comparing farm insurance you should tell them it doesnt exist online but ask what they would like to compare and maybe you can help guide them.
+
+
+       # Insurance 
+       you should find out what kind of cover they are looking and how they currently get their insurance.
+
       ${req.body.saleSummaryText}
       `,
     role: "system",
@@ -75,7 +89,7 @@ export default async function (req, res) {
 
   const messages = [prompt, ...req.body.messages, userPrompt];
   const response = await openai.createChatCompletion({
-    model: "gpt-3.5-turbo",
+    model: "gpt-4o",
     messages: messages,
   });
 

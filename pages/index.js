@@ -49,10 +49,20 @@ export default function Home() {
     setUserId(createFakeName());
   }, []);
 
+  // const questions = [
+  //   "Ive a calf with a scour. What will I do?",
+  //   "Whats Red Tractor Assurance?",
+  //   "When is the TAMS 3 closing date?",
+  //   "What sales are on today?",
+  //   "What sheep sales are on tomorrow?",
+  //   "How many sales are on today?",
+  //   "Tell me a joke",
+  // ];
+
   const questions = [
-    "Ive a calf with a scour. What will I do?",
-    "Whats Red Tractor Assurance?",
-    "When is the TAMS 3 closing date?",
+    "Where can I compare farm insurance?",
+    "What types of farm insurance coverage do I need?",
+    "Can you help me find a farm insurance quote?",
     "What sales are on today?",
     "What sheep sales are on tomorrow?",
     "How many sales are on today?",
@@ -60,9 +70,16 @@ export default function Home() {
   ];
 
   useEffect(() => {
-    setSuggestedQuestions(
-      questions.sort(() => 0.5 - Math.random()).slice(0, 3)
-    );
+    const insuranceQuestions = questions.slice(0, 3);
+    const otherQuestions = questions.slice(3);
+
+    const randomInsuranceQuestion =
+      insuranceQuestions[Math.floor(Math.random() * insuranceQuestions.length)];
+    const randomOtherQuestions = otherQuestions
+      .sort(() => 0.5 - Math.random())
+      .slice(0, 2);
+
+    setSuggestedQuestions([randomInsuranceQuestion, ...randomOtherQuestions]);
   }, []);
 
   useEffect(() => {
