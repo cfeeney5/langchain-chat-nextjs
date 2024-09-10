@@ -82,7 +82,11 @@ export default function Home() {
       .sort(() => 0.5 - Math.random())
       .slice(0, 2);
 
-    setSuggestedQuestions([randomInsuranceQuestion, ...randomOtherQuestions]);
+    setSuggestedQuestions(
+      [randomInsuranceQuestion, ...randomOtherQuestions].sort(
+        () => 0.5 - Math.random()
+      )
+    );
   }, []);
 
   useEffect(() => {
